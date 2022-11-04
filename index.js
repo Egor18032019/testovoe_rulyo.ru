@@ -8,10 +8,13 @@ const url = 'http://www.cbr.ru/s/newbik'
 const pathForZipFile = './bicForCbr.zip'
 
 // скачиват файл
-await downloadFile(url, pathForZipFile)
+ downloadFile(url, pathForZipFile)
     .then
     (() => parseBicList(pathForZipFile))
     .then
     ((data) => saveData(data))
     .then
     (() => deleteFile(pathForZipFile))
+    .catch(
+        err=>console.log(err)
+    )
